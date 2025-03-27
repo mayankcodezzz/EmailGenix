@@ -1,0 +1,69 @@
+STEP 1: Project Setup and Initial Git Repository
+GOAL: Establish the project foundation with a basic structure and Git version control.
+
+1. Create the Repository on Github and clone it with git clone Your Repository Url command  
+2. Create Initial Directory Structure 
+
+email_genix/
+├── app/
+│   └── __init__.py  # Marks 'app' as a Python package
+├── logs/            # For storing log files
+├── .env             # Environment variables (empty for now)
+├── requirements.txt # Dependencies (empty for now)
+└── run.py           # Entry point for the Flask app
+
+3. Add Initial Code
+
+Edit run.py:
+# run.py
+from app import create_app
+
+# Create the Flask app instance
+app = create_app()
+
+# Run the app in debug mode on port 5000
+if __name__ == "__main__":
+    app.run(debug=True, port=5000)
+
+Edit app/__init__.py:
+# app/__init__.py
+from flask import Flask
+
+def create_app():
+    # Initialize Flask application
+    app = Flask(__name__)
+    
+    # Basic route for testing
+    @app.route('/')
+    def home():
+        return "Welcome to EmailGenix!"
+    
+    return app
+
+4. Add a README
+Create README.md:
+# EmailGenix
+A Flask-based web app to generate and manage emails using AI and Gmail API.
+
+5. Update requirements
+Flask
+google-auth-oauthlib
+google-auth-httplib2
+google-api-python-client
+google-generativeai
+python-dotenv
+requests
+
+6. Setup Virtual Environment in Python
+Create a virtual environment: python -m venv venv
+Activate it: venv\Scripts\activate (Windows) or source venv/bin/activate (Linux/Mac)
+Install dependencies: pip install -r requirements.txt
+
+7. Test
+Run the app: python run.py
+
+5. Commit Changes
+git add .
+git commit -m "Initial commit: Set up project structure and basic Flask app"
+git remote add origin <your-repo-url>  # Replace with your GitHub repo URL
+git push -u origin main
